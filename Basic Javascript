@@ -1,0 +1,128 @@
+// Load Chart.js CDN
+// Ensure Chart.js is included in your HTML: <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+// Elements
+const followersCount = document.getElementById('followers-count');
+const postsCount = document.getElementById('posts-count');
+const engagementMetrics = document.getElementById('engagement-metrics');
+
+const bgMusic = document.getElementById('bgMusic');
+const musicToggleBtn = document.getElementById('musicToggle');
+
+const ctxEngagement = document.getElementById('engagementChart').getContext('2d');
+const ctxFollowers = document.getElementById('followersChart').getContext('2d');
+
+let engagementChart, followersChart;
+
+// Toggle music on/off
+document.getElementById('musicToggle').addEventListener('click', () => {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    musicToggleBtn.textContent = '🔇 Mute';
+  } else {
+    bgMusic.pause();
+    musicToggleBtn.textContent = '🔊 Mute';
+  }
+});
+
+// Create charts
+function createEngagementChart(labels, data) {
+  if (engagementChart) engagementChart.destroy();
+  engagementChart = new Chart(ctxEngagement, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Engagement',
+        data: data,
+        borderColor: '#ffd700',
+        backgroundColor: 'rgba(255, 215, 0, 0.2)',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: '#ffd700'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: { backgroundColor: '#222', titleColor: '#ffd700', bodyColor: '#ffd700' }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { color: '#ffd700' },
+          grid: { color: 'rgba(255,255,255,0.1)' }
+        },
+        x: {
+          ticks: { color: '#ffd700' },
+          grid: { color: 'rgba(255,255,255,0.1)' }
+        }
+      }
+    }
+  });
+}
+
+function createFollowersChart(labels, data) {
+  if (followersChart) followersChart.destroy();
+  followersChart = new Chart(ctxFollowers, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Followers',
+        data: data,
+        backgroundColor: 'rgba(255, 215, 0, 0.6)',
+        borderColor: '#ffd700',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: { backgroundColor: '#222', titleColor: '#ffd700', bodyColor: '#ffd700' }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { color: '#ffd700' },
+          grid: { color: 'rgba(255,255,255,0.1)' }
+        },
+        x: {
+          ticks: { color: '#ffd700' }
+        }
+      }
+    }
+  });
+}
+
+// Mock API data fetch (replace with real API calls)
+async function fetchData() {
+  // Example: replace this with actual fetch calls
+  // For demonstration, generating random data
+  const followers = Math.floor(1000 + Math.random() * 500);
+  const posts = Math.floor(50 + Math.random() * 10);
+  const engagement = Math.floor(700 + Math.random() * 300);
+  const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const engagementData = labels.map(() => Math.floor(50 + Math.random() * 50));
+  const followersData = labels.map((_, i) => Math.floor(900 + i * 50 + Math.random() * 20));
+
+  // Update stats
+  followersCount.textContent = followers.toLocaleString();
+  postsCount.textContent = posts;
+  engagementMetrics.textContent = engagement;
+
+  // Create charts
+  createEngagementChart(labels, engagementData);
+  createFollowersChart(labels, followersData);
+}
+
+// Manual refresh button
+document.getElementById('updateBtn').addEventListener('click', fetchData);
+
+// Initial load
+fetchData();
+
+// Optional: auto-refresh every 60 seconds
+// setInterval(fetchData, 60000);
