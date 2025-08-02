@@ -1,0 +1,164 @@
+/* Reset & Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,127,0,0.1), rgba(255,255,0,0.1),
+              rgba(0,255,0,0.1), rgba(0,0,255,0.1), rgba(75,0,130,0.1), rgba(148,0,211,0.1));
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Dashboard Container */
+.dashboard {
+  width: 95%;
+  max-width: 1300px;
+  background: rgba(0,0,0,0.7);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Vintage TV Header & controls with glow animation */
+.header {
+  background: #222;
+  padding: 15px 20px;
+  border: 4px solid #555;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Georgia', serif;
+  font-size: 1.8em;
+  color: #ffd700;
+  box-shadow: 0 0 20px #ffd700, inset 0 0 10px #444;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 20px #ffd700, inset 0 0 10px #444; }
+  100% { box-shadow: 0 0 30px #ffd700, inset 0 0 15px #222; }
+}
+
+/* TV screen style */
+.tv-screen {
+  background: #111;
+  border: 8px solid #333;
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: inline-block;
+  font-family: 'Georgia', serif;
+  font-size: 1.2em;
+  box-shadow: inset 0 0 20px #000, 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* Music toggle button styles */
+.music-btn {
+  background: #ffd700;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s;
+  box-shadow: 0 0 10px #ffd700;
+}
+.music-btn:hover {
+  background: #ffcc00;
+}
+
+/* Stats section with rainbow glow borders */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.card {
+  flex: 1 1 200px;
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 0.4),
+    rgba(255, 127, 0, 0.4),
+    rgba(255, 255, 0, 0.4),
+    rgba(0, 255, 0, 0.4),
+    rgba(0, 0, 255, 0.4),
+    rgba(75, 0, 130, 0.4),
+    rgba(148, 0, 211, 0.4)
+  );
+  background-size: 600% 600%;
+  animation: rainbowBorder 8s linear infinite;
+  border-radius: 12px;
+  z-index: -1;
+}
+
+@keyframes rainbowBorder {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Visualization section styling */
+.visualizations {
+  background: #222;
+  padding: 15px;
+  border-radius: 10px;
+  border: 4px solid #555;
+  box-shadow: inset 0 0 15px #000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+.note {
+  font-size: 0.85em;
+  color: #ccc;
+  margin-top: 8px;
+}
+
+/* Footer with refresh button */
+.footer {
+  text-align: center;
+  margin-top: 10px;
+}
+#updateBtn {
+  background: #ffd700;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ffd700;
+  transition: background 0.3s;
+}
+#updateBtn:hover {
+  background: #ffcc00;
+}
