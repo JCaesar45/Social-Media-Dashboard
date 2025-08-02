@@ -1,16 +1,16 @@
-<!-- Optional background music -->
-<audio controls autoplay loop style="display:none;">
-  <source src="https://ia601503.us.archive.org/28/items/matlock-theme-song/MATLOCK%20THEME%20SONG.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
+<!-- Background music with toggle control -->
+<audio id="bgMusic" src="https://ia601503.us.archive.org/28/items/matlock-theme-song/MATLOCK%20THEME%20SONG.mp3" loop></audio>
 
 <div class="dashboard">
+  <!-- Vintage TV Header with toggle button -->
   <header class="header">
     <div class="tv-screen">
-      <h1>Social Media Dashboard</h1>
+      <h1>🔴 Social Media Dashboard</h1>
     </div>
+    <button id="musicToggle" class="music-btn">🔊 Mute</button>
   </header>
 
+  <!-- Stats Cards -->
   <section class="stats">
     <div class="card">
       <h2>Followers</h2>
@@ -26,12 +26,20 @@
     </div>
   </section>
 
+  <!-- Visualizations: Multiple charts -->
   <section class="visualizations">
-    <canvas id="engagementChart"></canvas>
-    <p class="note">*Sample engagement over time</p>
+    <div class="chart-container">
+      <canvas id="engagementChart"></canvas>
+      <p class="note">Engagement Over Last 7 Days</p>
+    </div>
+    <div class="chart-container">
+      <canvas id="followersChart"></canvas>
+      <p class="note">Followers Growth</p>
+    </div>
   </section>
 
+  <!-- Refresh Button -->
   <footer class="footer">
-    <button id="updateBtn">Refresh Data</button>
+    <button id="updateBtn">🔄 Refresh Data</button>
   </footer>
 </div>
